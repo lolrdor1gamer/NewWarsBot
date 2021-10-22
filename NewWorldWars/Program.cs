@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting; 
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace NewWorldWars
 {
@@ -10,5 +12,12 @@ namespace NewWorldWars
             var bot = new Bot();
             bot.RunAsync().GetAwaiter().GetResult();
         }
+
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

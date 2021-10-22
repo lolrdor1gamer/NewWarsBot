@@ -16,19 +16,21 @@ namespace NewWorldWars
         public List<string> AdminGuilds;
         public DiscordClient Client { get; private set; }
         public CommandsNextExtension Commands { get; private set; }
-        public async Task RunAsync()
+
+        public Bot(IServiceProvider services)
         {
-            Client = new DiscordClient(DisConfig());
+            
+             Client = new DiscordClient(DisConfig());
 
-            Client.Ready += OnclientReady;
+             Client.Ready += OnclientReady;
 
-            Commands = Client.UseCommandsNext(ComConfig());
+             Commands = Client.UseCommandsNext(ComConfig(services));
 
-            Commands.RegisterCommands<ServerCommands>();
+             Commands.RegisterCommands<ServerCommands>();
 
-            await Client.ConnectAsync();
-            await Task.Delay(-1);
+             Client.ConnectAsync();
         }
+
 
         private Task OnclientReady(DiscordClient dc,ReadyEventArgs e)
         {
@@ -37,7 +39,7 @@ namespace NewWorldWars
 
 
 
-        private CommandsNextConfiguration ComConfig()
+        private CommandsNextConfiguration ComConfig(IServiceProvider services)
         {
             string file = File.ReadAllText("config.txt");
             var strings = file.Split('\n');
@@ -46,6 +48,7 @@ namespace NewWorldWars
                 EnableMentionPrefix = true,
                 EnableDms = false,
                 DmHelp = true,
+                Services = services
             };
             foreach (var s in strings)
             {

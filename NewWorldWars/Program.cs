@@ -13,7 +13,7 @@ namespace NewWorldWars
             bot.RunAsync().GetAwaiter().GetResult();
         }
 
-        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

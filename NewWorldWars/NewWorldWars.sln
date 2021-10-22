@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewWorldWars", "NewWorldWars.csproj", "{7F73ED3B-5F9B-437D-8683-9657F496125D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{7EC4B0D5-D16E-4F5F-872A-766D4727F839}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewWorldWars.DAL", "NewWorldWars.DAL", "{7EC4B0D5-D16E-4F5F-872A-766D4727F839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewWorldWars.DAL", "..\NewWorldWars.DAL\NewWorldWars.DAL.csproj", "{2CC2D79E-31B4-4322-A5B5-21205164F464}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewWorldWars.DAL", "..\NewWorldWars.DAL\NewWorldWars.DAL.csproj", "{2CC2D79E-31B4-4322-A5B5-21205164F464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewWorldWars.DAL.Migrations", "..\NewWorldWars.DAL.Migrations\NewWorldWars.DAL.Migrations.csproj", "{88511302-9996-457D-9BC6-78C1EFB3787C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{2CC2D79E-31B4-4322-A5B5-21205164F464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CC2D79E-31B4-4322-A5B5-21205164F464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CC2D79E-31B4-4322-A5B5-21205164F464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88511302-9996-457D-9BC6-78C1EFB3787C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88511302-9996-457D-9BC6-78C1EFB3787C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88511302-9996-457D-9BC6-78C1EFB3787C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88511302-9996-457D-9BC6-78C1EFB3787C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2CC2D79E-31B4-4322-A5B5-21205164F464} = {7EC4B0D5-D16E-4F5F-872A-766D4727F839}
+		{88511302-9996-457D-9BC6-78C1EFB3787C} = {7EC4B0D5-D16E-4F5F-872A-766D4727F839}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F49BDD0-D263-44A3-A9A3-D9468D6AC25C}

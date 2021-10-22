@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace NewWorldWars.DAL
 {
-    public class WarEvent
+    public abstract class Entity
     {
         [Key]
         public int Id { get; set; }

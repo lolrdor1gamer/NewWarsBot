@@ -9,8 +9,7 @@ namespace NewWorldWars
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var bot = new Bot();
-            bot.RunAsync().GetAwaiter().GetResult();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

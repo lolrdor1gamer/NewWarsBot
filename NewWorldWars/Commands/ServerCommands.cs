@@ -2,6 +2,7 @@
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using Newtonsoft.Json;
+using NewWorldWars.DAL;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,14 @@ namespace NewWorldWars.Commands
 {
     class ServerCommands : BaseCommandModule
     {
+        private readonly BotContext _context;
 
+        public ServerCommands(BotContext context)
+        {
+            _context = context;
+        }
+
+        #region GuildRegistrate
         [Command("rmw")]
         [Description("Registrating guild to list")]
         public async Task RegistrateGuild(CommandContext ctx)
@@ -44,13 +52,20 @@ namespace NewWorldWars.Commands
                 await ctx.Channel.SendMessageAsync("You haven't got rules").ConfigureAwait(false);
             }
         }
+        #endregion
+        #region WarRegistrating
         [Command("war")]
         [Description("Registrating new war")]
         public async Task RegistrateGuild(CommandContext ctx, string location)
         {
             if(CheckRoles(ctx.Member))
             {
-                File.Create($"{location}.txt");
+                await _context.WarEvents.AddAsync(new WarEvent
+                {
+                    Location = location,
+                    Date = DateTime.Today.AddHours(20),
+                    RequiredLevel = 0
+                }).ConfigureAwait(false);
             }
             else 
             {
@@ -58,6 +73,61 @@ namespace NewWorldWars.Commands
             }
         }
 
+        [Command("war")]
+        [Description("Registrating new war")]
+        public async Task RegistrateGuild(CommandContext ctx, DateTime time)
+        {
+            if (CheckRoles(ctx.Member))
+            { 
+                await _context.WarEvents.AddAsync(new WarEvent
+                {
+                    Location = "No Data",
+                    Date = time,
+                    RequiredLevel = 0
+                }).ConfigureAwait(false);
+            }
+            else
+            {
+                await ctx.Channel.SendMessageAsync("You haven't got rules").ConfigureAwait(false);
+            }
+        }
+
+        [Command("war")]
+        [Description("Registrating new war")]
+        public async Task RegistrateGuild(CommandContext ctx, string location, DateTime time)
+        {
+            if (CheckRoles(ctx.Member))
+            {
+                await _context.WarEvents.AddAsync(new WarEvent
+                {
+                    Location = location,
+                    Date = time,
+                    RequiredLevel = 0
+                }).ConfigureAwait(false);
+            }
+            else
+            {
+                await ctx.Channel.SendMessageAsync("You haven't got rules").ConfigureAwait(false);
+            }
+        }
+        public async Task RegistrateGuild(CommandContext ctx, string location, DateTime time, byte req_level)
+        {
+            if (CheckRoles(ctx.Member))
+            {
+                await _context.WarEvents.AddAsync(new WarEvent
+                {
+                    Location = location,
+                    Date = time,
+                    RequiredLevel = req_level
+                }).ConfigureAwait(false);
+            }
+            else
+            {
+                await ctx.Channel.SendMessageAsync("You haven't got rules").ConfigureAwait(false);
+            }
+        }
+
+        #endregion
 
         bool CheckRoles(DiscordMember dm)
         {
@@ -68,7 +138,7 @@ namespace NewWorldWars.Commands
             }
             return false;
         }
-
+        /*
         async string JsonSettings()
         {
             var json = string.Empty;
@@ -80,7 +150,7 @@ namespace NewWorldWars.Commands
             }
 
             var warConfigJson = JsonConvert.DeserializeObject<WarConfigJson>(json);
-        }
+        }*/
     }
         
 }

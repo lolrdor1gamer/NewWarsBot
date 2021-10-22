@@ -13,7 +13,6 @@ namespace NewWorldWars
 {
     class Bot
     {
-        public List<string> AdminGuilds;
         public DiscordClient Client { get; private set; }
         public CommandsNextExtension Commands { get; private set; }
 
